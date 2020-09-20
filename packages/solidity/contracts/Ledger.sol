@@ -1,6 +1,8 @@
 pragma solidity ^0.6.2;
 
-contract Ledger {
+import "@openzeppelin/contracts/utils/Pausable.sol";
+
+contract Ledger is Pausable {
     event EtherReceived(address indexed from, uint256 value);
 
     receive() external payable {
