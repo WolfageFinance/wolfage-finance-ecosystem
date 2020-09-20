@@ -2,7 +2,8 @@
   "name": "@wolfage-finance/solidity",
   "version": "1.0.0",
   "dependencies": {
-    "@openzeppelin/cli": "^2.8.2"
+    "@openzeppelin/cli": "^2.8.2",
+    "@openzeppelin/contracts": "^3.2.0"
   },
   "scripts": {
     "compile": "oz compile"
