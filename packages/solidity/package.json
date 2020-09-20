@@ -1,0 +1,10 @@
+{
+  "name": "@wolfage-finance/solidity",
+  "version": "1.0.0",
+  "dependencies": {
+    "@openzeppelin/cli": "^2.8.2"
+  },
+  "scripts": {
+    "compile": "oz compile"
+  }
+}
