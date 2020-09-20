@@ -1,31 +1,32 @@
 {
-  "name": "wolfage-finance-platform",
-  "version": "0.0.1",
-  "description": "The Wolfage Finance Platform and Ecosystem",
-  "main": "index.js",
-  "scripts": {},
-  "repository": "https://github.com/WolfageFinance/wolfage-finance-platform.git",
-  "author": "Wolfage Finance Platform",
-  "license": "MIT",
-  "devDependencies": {
-    "bignumber.js": "8.0.1",
-    "jest-diff": "^24.9.0",
-    "jest-junit": "^6.4.0",
-    "lite-server": "^2.3.0",
-    "solium": "^1.2.5",
-    "solparse": "^2.2.8"
+  "name": "@wolfage-finance/monorepo",
+  "version": "1.0.0",
+  "keywords": [
+    "ethereum",
+    "react",
+    "workspaces",
+    "yarn"
+  ],
+  "private": true,
+  "scripts": {
+    "solidity:compile": "yarn workspace @wolfage-finance/solidity compile",
+    "subgraph:auth": "yarn workspace @wolfage-finance/subgraph auth",
+    "subgraph:codegen": "yarn workspace @wolfage-finance/subgraph codegen",
+    "subgraph:build": "yarn workspace @wolfage-finance/subgraph build",
+    "subgraph:deploy": "yarn workspace @wolfage-finance/subgraph deploy",
+    "react-app:build": "yarn workspace @wolfage-finance/react-app build",
+    "react-app:eject": "yarn workspace @wolfage-finance/react-app eject",
+    "react-app:ipfs": "yarn workspace @wolfage-finance/react-app ipfs",
+    "react-app:start": "yarn workspace @wolfage-finance/react-app start",
+    "react-app:test": "yarn workspace @wolfage-finance/react-app test"
   },
-  "dependencies": {
-    "@openzeppelin/contracts": "^3.2.0",
-    "@truffle/hdwallet-provider": "^1.0.43",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "chai-bignumber": "^3.0.0",
-    "truffle": "5.1.45"
+  "workspaces": {
+    "nohoist": [
+      "**/@graphprotocol/graph-ts",
+      "**/@graphprotocol/graph-ts/**"
+    ],
+    "packages": [
+      "packages/*"
+    ]
   }
 }
