@@ -5,6 +5,7 @@
     "@openzeppelin/cli": "^2.8.2",
     "@openzeppelin/contracts": "^3.2.0"
   },
+  "license": "MIT",
   "scripts": {
     "compile": "oz compile"
   }
