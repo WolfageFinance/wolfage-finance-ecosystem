@@ -5,20 +5,12 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 
 contract GatewayV1 is AccessControl, Pausable {
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-    bytes32 public constant MANAGER_ROLE = keccak256("MANAGER_ROLE");
 
     uint256 public constant version = 1;
-
-    event EtherReceived(address indexed from, uint256 value);
 
     constructor(address owner) public {
         _setupRole(DEFAULT_ADMIN_ROLE, owner);
         _setupRole(PAUSER_ROLE, owner);
-        _setupRole(MANAGER_ROLE, owner);
-    }
-
-    receive() external payable {
-        emit EtherReceived(msg.sender, msg.value);
     }
 
     function pause() public virtual {
