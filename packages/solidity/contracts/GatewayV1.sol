@@ -3,7 +3,7 @@ pragma solidity ^0.6.2;
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 
-contract LedgerV1 is AccessControl, Pausable {
+contract GatewayV1 is AccessControl, Pausable {
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant MANAGER_ROLE = keccak256("MANAGER_ROLE");
 
@@ -24,7 +24,7 @@ contract LedgerV1 is AccessControl, Pausable {
     function pause() public virtual {
         require(
             hasRole(PAUSER_ROLE, _msgSender()),
-            "LedgerV1: must have pauser role to pause"
+            "GatewayV1: must have pauser role to pause"
         );
         _pause();
     }
@@ -32,7 +32,7 @@ contract LedgerV1 is AccessControl, Pausable {
     function unpause() public virtual {
         require(
             hasRole(PAUSER_ROLE, _msgSender()),
-            "LedgerV1: must have pauser role to unpause"
+            "GatewayV1: must have pauser role to unpause"
         );
         _unpause();
     }

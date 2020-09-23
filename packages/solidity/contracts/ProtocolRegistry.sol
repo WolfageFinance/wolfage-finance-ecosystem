@@ -14,8 +14,8 @@ contract ProtocolRegistry is Ownable {
         address indexed to
     );
 
-    constructor(address newOwner) public {
-        transferOwnership(newOwner);
+    constructor(address admin) public {
+        transferOwnership(admin);
     }
 
     function register(uint256 id, address protocol) external onlyOwner {
