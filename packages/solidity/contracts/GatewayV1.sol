@@ -8,9 +8,9 @@ contract GatewayV1 is AccessControl, Pausable {
 
     uint256 public constant version = 1;
 
-    constructor(address owner) public {
-        _setupRole(DEFAULT_ADMIN_ROLE, owner);
-        _setupRole(PAUSER_ROLE, owner);
+    constructor(address admin) public {
+        _setupRole(DEFAULT_ADMIN_ROLE, admin);
+        _setupRole(PAUSER_ROLE, admin);
     }
 
     function pause() public virtual {
