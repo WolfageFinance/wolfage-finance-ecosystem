@@ -1,10 +1,10 @@
 pragma solidity ^0.6.2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Address.sol";
+import "./WAgeAddress.sol";
 
 contract ProtocolRegistry is Ownable {
-    using Address for address;
+    using WAgeAddress for address;
 
     mapping(uint256 => address) public protocols;
 
