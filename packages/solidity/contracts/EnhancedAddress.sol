@@ -5,7 +5,7 @@ pragma solidity ^0.6.2;
 /**
  * @dev Enhanced Address library extended on OpenZeppelin Address library
  */
-library WAgeAddress {
+library EnhancedAddress {
     /**
      * @dev Returns true if `account` is a contract.
      *
@@ -55,14 +55,14 @@ library WAgeAddress {
     function sendValue(address payable recipient, uint256 amount) internal {
         require(
             address(this).balance >= amount,
-            "WAgeAddress: insufficient balance"
+            "EnhancedAddress: insufficient balance"
         );
 
         // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
         (bool success, ) = recipient.call{value: amount}("");
         require(
             success,
-            "WAgeAddress: unable to send value, recipient may have reverted"
+            "EnhancedAddress: unable to send value, recipient may have reverted"
         );
     }
 
@@ -88,11 +88,16 @@ library WAgeAddress {
         internal
         returns (bytes memory)
     {
-        return functionCall(target, data, "WAgeAddress: low-level call failed");
+        return
+            functionCall(
+                target,
+                data,
+                "EnhancedAddress: low-level call failed"
+            );
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-functionCall-address-bytes-}[`functionCall`], but with
+     * @dev Same as {xref-EnhancedAddress-functionCall-address-bytes-}[`functionCall`], but with
      * `errorMessage` as a fallback revert reason when `target` reverts.
      *
      * _Available since v3.1._
@@ -106,7 +111,7 @@ library WAgeAddress {
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-functionCall-address-bytes-}[`functionCall`],
+     * @dev Same as {xref-EnhancedAddress-functionCall-address-bytes-}[`functionCall`],
      * but also transferring `value` wei to `target`.
      *
      * Requirements:
@@ -126,12 +131,12 @@ library WAgeAddress {
                 target,
                 data,
                 value,
-                "WAgeAddress: low-level call with value failed"
+                "EnhancedAddress: low-level call with value failed"
             );
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * @dev Same as {xref-EnhancedAddress-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
      * with `errorMessage` as a fallback revert reason when `target` reverts.
      *
      * _Available since v3.1._
@@ -144,7 +149,7 @@ library WAgeAddress {
     ) internal returns (bytes memory) {
         require(
             address(this).balance >= value,
-            "WAgeAddress: insufficient balance for call"
+            "EnhancedAddress: insufficient balance for call"
         );
         return _functionCallWithValue(target, data, value, errorMessage);
     }
@@ -155,7 +160,7 @@ library WAgeAddress {
         uint256 weiValue,
         string memory errorMessage
     ) private returns (bytes memory) {
-        require(isContract(target), "WAgeAddress: call to non-contract");
+        require(isContract(target), "EnhancedAddress: call to non-contract");
 
         // solhint-disable-next-line avoid-low-level-calls
         (bool success, bytes memory returndata) = target.call{value: weiValue}(
@@ -201,12 +206,12 @@ library WAgeAddress {
             delegateCall(
                 target,
                 data,
-                "WAgeAddress: low-level delegatecall failed"
+                "EnhancedAddress: low-level delegatecall failed"
             );
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-delegateCall-address-bytes-}[`delegateCall`], but with
+     * @dev Same as {xref-EnhancedAddress-delegateCall-address-bytes-}[`delegateCall`], but with
      * `errorMessage` as a fallback revert reason when `target` reverts.
      */
     function delegateCall(
@@ -218,7 +223,7 @@ library WAgeAddress {
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-delegateCall-address-bytes-}[`delegateCall`],
+     * @dev Same as {xref-EnhancedAddress-delegateCall-address-bytes-}[`delegateCall`],
      * but also transferring `value` wei to `target`.
      *
      * Requirements:
@@ -236,12 +241,12 @@ library WAgeAddress {
                 target,
                 data,
                 value,
-                "WAgeAddress: low-level delegatecall with value failed"
+                "EnhancedAddress: low-level delegatecall with value failed"
             );
     }
 
     /**
-     * @dev Same as {xref-WAgeAddress-delegateCallWithValue-address-bytes-uint256-}[`delegateCallWithValue`], but
+     * @dev Same as {xref-EnhancedAddress-delegateCallWithValue-address-bytes-uint256-}[`delegateCallWithValue`], but
      * with `errorMessage` as a fallback revert reason when `target` reverts.
      */
     function delegateCallWithValue(
@@ -252,7 +257,7 @@ library WAgeAddress {
     ) internal returns (bytes memory) {
         require(
             address(this).balance >= value,
-            "WAgeAddress: insufficient balance for delegatecall"
+            "EnhancedAddress: insufficient balance for delegatecall"
         );
         return _delegateCallWithValue(target, data, value, errorMessage);
     }
@@ -265,7 +270,7 @@ library WAgeAddress {
     ) private returns (bytes memory) {
         require(
             isContract(target),
-            "WAgeAddress: delegatecall to non-contract"
+            "EnhancedAddress: delegatecall to non-contract"
         );
 
         // solhint-disable-next-line avoid-low-level-calls
