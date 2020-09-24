@@ -60,6 +60,10 @@ contract ContractRegistry is Ownable {
     }
 
     function get(uint256 id) external view returns (address) {
+        require(
+            _addresses[id] != address(0),
+            "ContractRegistry: registry does not exist"
+        );
         return _addresses[id];
     }
 
