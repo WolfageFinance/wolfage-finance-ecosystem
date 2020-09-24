@@ -3,7 +3,7 @@ pragma solidity ^0.6.2;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./EnhancedAddress.sol";
 
-contract ProtocolRegistry is Ownable {
+contract ContractRegistry is Ownable {
     using EnhancedAddress for address;
 
     mapping(uint256 => address) public protocols;
@@ -19,7 +19,7 @@ contract ProtocolRegistry is Ownable {
     }
 
     function register(uint256 id, address protocol) external onlyOwner {
-        require(protocol.isContract(), "ProtocolRegistry: not a contract");
+        require(protocol.isContract(), "ContractRegistry: not a contract");
         address oldProtocol = protocols[id];
         protocols[id] = protocol;
         emit ProtocolRegistered(id, oldProtocol, protocol);
