@@ -219,53 +219,12 @@ library EnhancedAddress {
         bytes memory data,
         string memory errorMessage
     ) internal returns (bytes memory) {
-        return _delegateCallWithValue(target, data, 0, errorMessage);
+        return _delegateCall(target, data, errorMessage);
     }
 
-    /**
-     * @dev Same as {xref-EnhancedAddress-delegateCall-address-bytes-}[`delegateCall`],
-     * but also transferring `value` wei to `target`.
-     *
-     * Requirements:
-     *
-     * - the calling contract must have an ETH balance of at least `value`.
-     * - the called Solidity function must be `payable`.
-     */
-    function delegateCallWithValue(
+    function _delegateCall(
         address target,
         bytes memory data,
-        uint256 value
-    ) internal returns (bytes memory) {
-        return
-            delegateCallWithValue(
-                target,
-                data,
-                value,
-                "EnhancedAddress: low-level delegatecall with value failed"
-            );
-    }
-
-    /**
-     * @dev Same as {xref-EnhancedAddress-delegateCallWithValue-address-bytes-uint256-}[`delegateCallWithValue`], but
-     * with `errorMessage` as a fallback revert reason when `target` reverts.
-     */
-    function delegateCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 value,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
-        require(
-            address(this).balance >= value,
-            "EnhancedAddress: insufficient balance for delegatecall"
-        );
-        return _delegateCallWithValue(target, data, value, errorMessage);
-    }
-
-    function _delegateCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 weiValue,
         string memory errorMessage
     ) private returns (bytes memory) {
         require(
@@ -274,9 +233,7 @@ library EnhancedAddress {
         );
 
         // solhint-disable-next-line avoid-low-level-calls
-        (bool success, bytes memory returndata) = target.delegatecall{
-            value: weiValue
-        }(data);
+        (bool success, bytes memory returndata) = target.delegatecall(data);
         if (success) {
             return returndata;
         } else {
