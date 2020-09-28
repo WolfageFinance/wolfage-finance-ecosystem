@@ -10,22 +10,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "solidity:compile": "yarn workspace @wolfage-finance/solidity compile",
-    "subgraph:auth": "yarn workspace @wolfage-finance/subgraph auth",
-    "subgraph:codegen": "yarn workspace @wolfage-finance/subgraph codegen",
-    "subgraph:build": "yarn workspace @wolfage-finance/subgraph build",
-    "subgraph:deploy": "yarn workspace @wolfage-finance/subgraph deploy",
-    "react-app:build": "yarn workspace @wolfage-finance/react-app build",
-    "react-app:eject": "yarn workspace @wolfage-finance/react-app eject",
-    "react-app:ipfs": "yarn workspace @wolfage-finance/react-app ipfs",
-    "react-app:start": "yarn workspace @wolfage-finance/react-app start",
-    "react-app:test": "yarn workspace @wolfage-finance/react-app test"
+    "solidity:compile": "yarn workspace @wolfage-finance/solidity compile"
   },
   "workspaces": {
-    "nohoist": [
-      "**/@graphprotocol/graph-ts",
-      "**/@graphprotocol/graph-ts/**"
-    ],
     "packages": [
       "packages/*"
     ]
